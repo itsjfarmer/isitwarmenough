@@ -20,7 +20,7 @@
 function showPosition(position) {
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
-  var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=<your API key>&units=imperial";
+  var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=50bf8dc1050cb482f06b61a4c82912d3&units=imperial";
   
   $.getJSON(url, function(data) {
     var temperature = data.main.temp;
