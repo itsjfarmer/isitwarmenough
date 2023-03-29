@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Window Open or Closed?</title>
+  </head>
+  <body>
+    <h1>Is it warm enough to open your windows?</h1>
+    <p id="result"></p>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    $("#result").text("Geolocation is not supported by this browser.");
+  }
+});
+
+function showPosition(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=<your API key>&units=imperial";
+  
+  $.getJSON(url, function(data) {
+    var temperature = data.main.temp;
+    if (temperature >= 60) {
+      $("#result").text("It is warm enough to open your windows.");
+    } else {
+      $("#result").text("It is not warm enough to open your windows.");
+    }
+  });
+}
+
+    </script>
+  </body>
+</html>
